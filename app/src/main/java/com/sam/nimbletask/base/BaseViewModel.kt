@@ -3,6 +3,7 @@ package com.sam.nimbletask.base
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import timber.log.Timber
 
 open class BaseViewModel : ViewModel() {
 
@@ -12,6 +13,7 @@ open class BaseViewModel : ViewModel() {
 
 
     fun onRetrieveDataError(error: Throwable?) {
+        Timber.d("accessToken ${error!!.message}")
 
         loadingVisibility.value = View.GONE
         if (error != null && error.message != null)

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="surveyModel"
+                type="com.sam.nimbletask.models.SurveyResponseModel"/>
+    </data>
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/iv_top"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:imageUrl="@{surveyModel.coverImageUrl}"
+        />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                    android:id="@+id/tv_title"
+                    android:text="@{surveyModel.title}"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guideline"
+            />
+
+            <TextView
+                    android:id="@+id/tv_desc"
+                    android:text="@{surveyModel.description}"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginTop="32sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/guideline"
+
+            />
+
+            <Button
+                    android:padding="6sp"
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/take_survey_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/take_the_survey"
+                    android:textAllCaps="false"
+                    android:background="@drawable/rounded_bg"
+                    app:layout_constraintTop_toTopOf="@id/guideline2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+            />
+            <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:id="@+id/guideline"
+                                                        app:layout_constraintGuide_percent="0.25"
+                                                        android:orientation="horizontal"/>
+            <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:id="@+id/guideline2"
+                                                        app:layout_constraintGuide_percent="0.6"
+                                                        android:orientation="horizontal"/>
+            <!--<LinearLayout-->
+
+            <!--android:layout_width="0sp"-->
+            <!--android:layout_height="0sp"-->
+            <!--android:orientation="vertical"-->
+
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tv_title"-->
+            <!--android:text="@{topModel.title}"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--/>-->
+            <!--<TextView-->
+            <!--android:id="@+id/tv_score"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--/>-->
+
+            <!--</LinearLayout>-->
+
+            <!--<androidx.constraintlayout.widget.Guideline-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/guidelinev30"-->
+            <!--app:layout_constraintGuide_percent="0.3"-->
+            <!--android:orientation="vertical"/>-->
+            <!--<androidx.constraintlayout.widget.Guideline-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/guidelineh50"-->
+            <!--app:layout_constraintGuide_percent="0.5"-->
+            <!--android:orientation="horizontal"/>-->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
+
+</layout>

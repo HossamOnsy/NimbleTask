@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NimbleTask</string>
+    <string name="take_the_survey">Take the survey</string>
+    <string name="welcome_to_take_survey_activity">Welcome To Take Survey Activity</string>
 </resources>
