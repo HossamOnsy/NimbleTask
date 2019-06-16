@@ -1,15 +1,28 @@
 package com.sam.nimbletask.models
 
+import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 
 
-data class AccessTokenResponseModel(
-    @Json(name = "access_token")
-    val accessToken: String?,
-    @Json(name = "created_at")
-    val createdAt: Int?,
-    @Json(name = "expires_in")
-    val expiresIn: Int?,
-    @Json(name = "token_type")
-    val tokenType: String?
-)
+class AccessTokenResponseModel {
+
+
+    @SerializedName( "access_token")
+    var accessToken: String? = null
+    @SerializedName( "token_type")
+    var tokenType: String? = null
+    @SerializedName( "expires_in")
+    var expiresIn: Int? = null
+    @SerializedName( "created_at")
+    var createdAt: Int? = null
+
+//    @Json(name = "access_token")
+//    var accessToken: String? = null
+//    @Json(name = "token_type")
+//    var tokenType: String? = null
+//    @Json(name = "expires_in")
+//    var expiresIn: Int? = null
+//    @Json(name = "created_at")
+//    var createdAt: Int? = null
+
+}

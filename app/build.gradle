@@ -22,6 +22,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 buildscript {
@@ -36,10 +40,11 @@ buildscript {
     ext.lottieVersion = '3.0.0'
     ext.timber_Version = '4.7.1'
     ext.materialDesign_Version = '1.1.0-alpha07'
+    ext.glideVersion = '4.9.0'
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -48,7 +53,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 
-
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 
 
     // LiveData & ViewModel
@@ -69,6 +76,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
     //Rx
     implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_Version"
@@ -85,7 +93,7 @@ dependencies {
     //Debugging
     implementation "com.jakewharton.timber:timber:$timber_Version"
 
-    implementation "org.jetbrains.anko:anko-commons:0.10.5"
 
 
+    implementation "cz.intik:overflow-pager-indicator:2.0.0"
 }
