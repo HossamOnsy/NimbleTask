@@ -2,4 +2,9 @@
     <string name="app_name">NimbleTask</string>
     <string name="take_the_survey">Take the survey</string>
     <string name="welcome_to_take_survey_activity">Welcome To Take Survey Activity</string>
+    <string name="preference_file_key">com.NearHero.PREFNEARHERO</string>
+    <string name="surveys">SURVEYS</string>
+    <string name="AccessToken">XACCESSTOKEN</string>
+    <string name="noMoreResults">No More Results Available</string>
+    <string name="refresh">Refresh</string>
 </resources>

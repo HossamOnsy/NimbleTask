@@ -5,8 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 abstract class PaginationScrollListener
-
-(var layoutManager: LinearLayoutManager) : RecyclerView.OnScrollListener() {
+    (var layoutManager: LinearLayoutManager) : RecyclerView.OnScrollListener() {
 
     abstract fun isLastPage(): Boolean
 
@@ -22,8 +21,9 @@ abstract class PaginationScrollListener
         if (!isLoading() && !isLastPage()) {
             if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
                 loadMoreItems()
-            }//                    && totalItemCount >= ClothesFragment.itemsCount
+            }
         }
     }
+
     abstract fun loadMoreItems()
 }

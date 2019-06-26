@@ -4,20 +4,20 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.sam.nimbletask.R
 import com.sam.nimbletask.models.SurveyResponseModel
 import com.sam.nimbletask.ui.activities.TakeSurveyActivity
-import org.json.JSONObject
 
 
 class SurveysAdapter(var list: ArrayList<SurveyResponseModel>) :
     RecyclerView.Adapter<SurveysAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding: com.sam.nimbletask.databinding.SurveyItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context)
-            , R.layout.survey_item, parent, false)
+        val binding: com.sam.nimbletask.databinding.SurveyItemBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context)
+            , R.layout.survey_item, parent, false
+        )
         return ViewHolder(binding)
     }
 
@@ -25,6 +25,7 @@ class SurveysAdapter(var list: ArrayList<SurveyResponseModel>) :
         list.addAll(newList)
         notifyDataSetChanged()
     }
+
     fun clearList() {
         list.clear()
         notifyDataSetChanged()
@@ -40,7 +41,8 @@ class SurveysAdapter(var list: ArrayList<SurveyResponseModel>) :
     override fun getItemCount() = list.size
 
 
-    class ViewHolder(private val  surveyItemBinding: com.sam.nimbletask.databinding.SurveyItemBinding) : RecyclerView.ViewHolder(surveyItemBinding.root) {
+    class ViewHolder(private val surveyItemBinding: com.sam.nimbletask.databinding.SurveyItemBinding) :
+        RecyclerView.ViewHolder(surveyItemBinding.root) {
 
         fun bind(item: SurveyResponseModel) {
             surveyItemBinding.surveyModel = item
@@ -49,7 +51,7 @@ class SurveysAdapter(var list: ArrayList<SurveyResponseModel>) :
 
             t.setOnClickListener {
 
-                    itemView.context.startActivity(Intent(itemView.context, TakeSurveyActivity::class.java))
+                itemView.context.startActivity(Intent(itemView.context, TakeSurveyActivity::class.java))
 
             }
 

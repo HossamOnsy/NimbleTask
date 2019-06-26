@@ -16,7 +16,7 @@ open class BaseViewModel : ViewModel() {
         Timber.d("accessToken ${error!!.message}")
 
         loadingVisibility.value = View.GONE
-        if (error != null && error.message != null)
+        if (error.message != null)
             errorMessage.value = error.message
         else
             errorMessage.value = "Error Occured , Please try again later ..."

@@ -1,9 +1,12 @@
 package com.sam.nimbletask.viewmodels
 
+import android.content.Context
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import com.sam.nimbletask.MyApplication.Companion.applicationContext
 import com.sam.nimbletask.base.BaseViewModel
-import com.sam.nimbletask.di.component.DaggerViewModelComponent
+import com.sam.nimbletask.di.component.DaggerMainComponent
+import com.sam.nimbletask.di.modules.NetworkModule
 import com.sam.nimbletask.models.AccessTokenResponseModel
 import com.sam.nimbletask.models.SurveyResponseModel
 import com.sam.nimbletask.repository.SurveysRepository
@@ -11,25 +14,21 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 import javax.inject.Inject
-import java.util.HashMap
 
 
-class SurveriesViewModel : BaseViewModel() {
+class SurveriesViewModel (var surveysRepository: SurveysRepository) : BaseViewModel() {
 
 
-    @Inject
-    lateinit var surveysRepository: SurveysRepository
     private var subscription: Disposable
 
     val surveyResponseModelList: MutableLiveData<List<SurveyResponseModel>> = MutableLiveData()
     val accessTokenMutableLiveData: MutableLiveData<AccessTokenResponseModel> = MutableLiveData()
-
+    var morePages = true
 
     init {
         subscription = CompositeDisposable()
-
-        DaggerViewModelComponent.builder().build().inject(this)
     }
 
     fun getAccessToken() {
@@ -38,17 +37,18 @@ class SurveriesViewModel : BaseViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
-                    onRetrieveDataStart() }
+                    onRetrieveDataStart()
+                }
                 .doOnTerminate {
-                    onRetrieveDataFinish() }
+                    onRetrieveDataFinish()
+                }
                 .subscribe(
                     {
 
                         onRetrieveAccessTokenSuccess(it)
 
                     },
-                    {
-                            error -> onRetrieveDataError(error) }
+                    { error -> onRetrieveDataError(error) }
                 )
     }
 
@@ -58,41 +58,34 @@ class SurveriesViewModel : BaseViewModel() {
 
     }
 
-    fun getSurveys(page: Int, surveysPerPage: Int,accessToken:String) {
-//        val pageMP = MultipartBody.Part.createFormData("page", page.toString())
-//        val surveysPerPageMP = MultipartBody.Part.createFormData("per_page", surveysPerPage.toString())
-//        val accessTokenMP = MultipartBody.Part.createFormData("access_token", accessToken.toString())
-//
-//        val mPartArrayList = ArrayList<MultipartBody.Part>()
-//        mPartArrayList.add(pageMP)
-//        mPartArrayList.add(surveysPerPageMP)
-//        mPartArrayList.add(accessTokenMP)
-
-
+    fun getSurveys(page: Int, surveysPerPage: Int, accessToken: String) {
+        if(morePages){
         val confirmRequest = HashMap<String, String>()
         confirmRequest["page"] = page.toString()
         confirmRequest["per_page"] = surveysPerPage.toString()
         confirmRequest[" access_token"] = accessToken
 
 
-
         subscription =
-            surveysRepository.getSurveys(page,surveysPerPage,accessToken)
+            surveysRepository.getSurveys(page, surveysPerPage, accessToken)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { onRetrieveDataStart() }
                 .doOnTerminate { onRetrieveDataFinish() }
                 .subscribe(
                     {
-
                         onRetrieveSurveysDataSuccess(it)
-
                     },
                     { error -> onRetrieveDataError(error) }
                 )
+        }
     }
 
     private fun onRetrieveSurveysDataSuccess(surveyList: List<SurveyResponseModel>) {
+
+        if(surveyList.size<=0){
+            morePages=false
+        }
 
         loadingVisibility.value = View.GONE
         surveyResponseModelList.value = surveyList
