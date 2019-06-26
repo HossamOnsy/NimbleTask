@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,21 +7,19 @@
         android:layout_height="match_parent"
         tools:context=".ui.activities.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
-                                                       android:layout_height="match_parent">
-        <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:background="@color/colorPrimary"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="match_parent"
-                                           android:layout_height="wrap_content">
-        <ImageView
-                android:id="@+id/refresh_btn"
-                android:layout_width="30sp" android:layout_height="30sp"
-        android:src="@drawable/refresh"/>
-        </androidx.appcompat.widget.Toolbar>
+    <com.sam.nimbletask.utils.CenterTitleToolbar
+            app:theme="@style/myToolbar"
+            android:id="@+id/toolbar"
+            android:background="@color/colorPrimary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    </com.sam.nimbletask.utils.CenterTitleToolbar>
+
     <androidx.recyclerview.widget.RecyclerView
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             android:id="@+id/rv_surveys"
@@ -30,18 +28,24 @@
             android:layout_height="0sp">
 
     </androidx.recyclerview.widget.RecyclerView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <cz.intik.overflowindicator.OverflowPagerIndicator
-            android:id="@+id/indicator"
-            android:layout_width="48sp"
-            android:layout_alignParentRight="true"
-            android:layout_height="match_parent"
-            app:dotFillColor="@color/colorWhite"
-            android:orientation="vertical"
+    <me.relex.circleindicator.CircleIndicator2
+            android:id="@+id/indicator2"
+            android:layout_width="@dimen/_48sdp"
+            app:ci_orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rv_surveys"
+            app:layout_constraintBottom_toBottomOf="@id/rv_surveys"
+            android:layout_height="0sp"
             android:gravity="center"/>
+
     <ProgressBar
             android:layout_centerInParent="true"
             android:id="@+id/progressbar"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"/>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

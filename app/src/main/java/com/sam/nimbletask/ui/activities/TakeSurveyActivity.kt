@@ -1,7 +1,7 @@
 package com.sam.nimbletask.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.sam.nimbletask.R
 
 class TakeSurveyActivity : AppCompatActivity() {

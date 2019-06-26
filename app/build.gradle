@@ -15,6 +15,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', "GRANT_TYPE", GRANT_TYPE
+        buildConfigField 'String', "USERNAME", USERNAME
+        buildConfigField 'String', "PASSWORD", PASSWORD
     }
     buildTypes {
         release {
@@ -41,6 +45,7 @@ buildscript {
     ext.timber_Version = '4.7.1'
     ext.materialDesign_Version = '1.1.0-alpha07'
     ext.glideVersion = '4.9.0'
+    ext.sdpVersion = '1.0.6'
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -93,7 +98,9 @@ dependencies {
     //Debugging
     implementation "com.jakewharton.timber:timber:$timber_Version"
 
+    implementation "com.intuit.sdp:sdp-android:$sdpVersion"
+    implementation "com.intuit.ssp:ssp-android:$sdpVersion"
+    implementation 'me.relex:circleindicator:2.1.2'
+    implementation 'androidx.palette:palette:1.0.0'
 
-
-    implementation "cz.intik:overflow-pager-indicator:2.0.0"
 }
